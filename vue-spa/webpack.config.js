@@ -14,7 +14,7 @@ const config = {
   devServer: {
 //    hot: true,
     host: '0.0.0.0',
-    port: 8080
+    port: process.env.EXTERNAL_PORT
   },
   module: {
     loaders: [
