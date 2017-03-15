@@ -1,0 +1,19 @@
+version: '2'
+services:
+  vue-spa:
+#    image: ebiven/vue-cli
+    build: .
+    # command: echo "http://neo4j:experimental@neo4j-experimental:7474/db/data" > RailsApp/awaitfile
+    # command: ./await -i ./awaitfile -- bash -c "rm -f tmp/pids/server.pid && rerun --background app.rb"
+    # command: ./await -i ./awaitfile -- bash -c "rm -f tmp/pids/server.pid && rerun -- rackup --port ${EXTERNAL_PORT} ./config.ru"
+    command: npm run dev
+
+    environment:
+      - EXTERNAL_PORT=${EXTERNAL_PORT}
+    ports:
+      - "${EXTERNAL_PORT}:8080"
+
+    volumes:
+      - ./vue-spa:/root/vue-spa
+      - ./vue-spa.output:/root/vue-spa/dist
+      - /root/vue-spa/node_modules
