@@ -1,0 +1,25 @@
+{
+  "artefact": {
+    "uuid": "8f466172-3c6e-431f-b430-05a5e849ac5f",
+    "id": "8f466172-3c6e-431f-b430-05a5e849ac5f",
+    "name": "2 connections",
+    "description": null,
+    "content": "Fake content",
+    "artefacts": [
+      {
+        "uuid": "43c73548-d2f8-4e32-b201-a4c94cc9bd88",
+        "id": "43c73548-d2f8-4e32-b201-a4c94cc9bd88",
+        "name": "UTF-8",
+        "description": "Description 4 😂",
+        "content": null
+      },
+      {
+        "uuid": "e0637e3c-188d-4468-b6f7-f80e2a200b64",
+        "id": "e0637e3c-188d-4468-b6f7-f80e2a200b64",
+        "name": "CIMS test account",
+        "description": "902-444-1234",
+        "content": null
+      }
+    ]
+  }
+}

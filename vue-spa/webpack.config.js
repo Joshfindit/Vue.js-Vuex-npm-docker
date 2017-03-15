@@ -14,7 +14,9 @@ const config = {
   devServer: {
 //    hot: true,
     host: '0.0.0.0',
-    port: process.env.EXTERNAL_PORT
+    port: process.env.EXTERNAL_PORT,
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/'
   },
   module: {
     loaders: [

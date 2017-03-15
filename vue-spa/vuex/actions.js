@@ -1,3 +1,7 @@
+export const getNoteList = ({ commit }) => {
+  commit('GET_NOTE_LIST')
+}
+
 export const addNote = ({ commit }) => {
   commit('ADD_NOTE')
 }

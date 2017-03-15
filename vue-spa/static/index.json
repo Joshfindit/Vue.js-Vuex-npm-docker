@@ -1,0 +1,273 @@
+[
+  {
+    "artefact": {
+      "uuid": "152fd189-665f-44b9-b86e-e43f20b3ba6a",
+      "id": "152fd189-665f-44b9-b86e-e43f20b3ba6a",
+      "name": "stackoverflow.com/questions/35296463/semantic-ui-onsuccess-onfailure-callbacks-not-being-fired-upon-form-validation",
+      "description": "[Source](http://stackoverflow.com/questions/35296463/semantic-ui-onsuccess-onfail",
+      "content": "[Source](http://stackoverflow.com/questions/35296463/semantic-ui-onsuccess-onfailure-callbacks-not-being-fired-upon-form-validation \"Permalink to  Semantic UI onSuccess, onFailure callbacks not being fired upon form validation \")\n\n#  Semantic UI onSuccess, onFailure callbacks not being fired upon form validation \n\nIn the following code which validates that username has a value and that the passwords match, neither the onSuccess nor the onFailure callback is ever fired even though the validation rules are being executed/enforced. I've tested every other part of this independently and this layout follows the documentation exactly, so I've ruled out syntax errors. In addition to the syntax used below, I also tried the format of $().form().onSuccess().onFailure() but got an \"Uncaught TypeError: onSuccess is not a function\". Fiddle here: [Semantic UI onSuccess, onFailure callback example][1].\n    \n    \n    $(function(){\n        $('#main')\n            .form({\n                on: 'blur',\n                fields: {\n                    username: {\n                        identifier : 'username',\n                        rules: [\n                            {\n                                type : 'empty'\n                            }\n                        ]\n                    },\n                    password1: {\n                        identifier  : 'password1',\n                        rules: [\n                            {\n                                type   : 'match[password2]',\n                                prompt : 'Please enter the same value in both fields'\n                            }\n                        ]\n                    },\n                    password2: {\n                        identifier  : 'password2',\n                        rules: [\n                            {\n                                type   : 'match[password1]',\n                                prompt : 'Please enter the same value in both fields'\n                            }\n                        ]\n                    }\n                },\n                onSuccess: function() {\n                    $(\".ui.button[name='account']\").removeClass('disabled');\n                    console.log('Success');\n                },\n                onFailure: function() {\n                    $(\".ui.button[name='account']\").addClass('disabled');\n                    console.log('Failure');\n                }\n            }\n        );\n    });\n    \n\nAsked by [Dan Swain][2]\n\n* * *\n\n**Accepted answer:**\n\nThe key is to call it this way. `$('#main').form(fieldRules, settings);` `onFailure` and `onSuccess` are registered in settings.\n\nHave a look of revised code:\n    \n    \n        $(function(){\n            $('#main')\n                .form({\n                        username: {\n                            identifier : 'username',\n                            rules: [\n                                {\n                                    type : 'empty'\n                                }\n                            ]\n                        },\n                        password1: {\n                            identifier  : 'password1',\n                            rules: [\n                                    {\n                                        type: 'empty',\n                                  prompt: 'Please enter the password'\n                                    },\n                                {\n                                    type   : 'match[password2]',\n                                    prompt : 'Please enter the same value in both fields'\n                                }\n                            ]\n                        },\n                        password2: {\n                            identifier  : 'password2',\n                            rules: [\n                                {\n                                    type   : 'match[password1]',\n                                    prompt : 'Please enter the same value in both fields'\n                                }\n                            ]\n                        }\n                    }, {\n                        on: 'blur',\n                      inline: true,\n                      onSuccess: function() {\n                        alert('Success');\n                        return false; // false is required if you do don't want to let it submit\n    \n                        },\n                        onFailure: function() {\n                        alert('Failure');\n                        return false; // false is required if you do don't want to let it submit                                            \n                        }\n                      });\n        });\n    \n\nAnswer by [Shuaib Nawaz][3]\n\n[1]: https://jsfiddle.net/dhswain/6y7w57xv/1/\n[2]: http://stackoverflow.com/users/5548239/dan-swain\n[3]: http://stackoverflow.com/users/366962/shuaib-nawaz\n\n",
+      "artefacts": [
+        {
+          "uuid": "06e7a2cd-1277-4598-9455-e6566f6122f5",
+          "id": "06e7a2cd-1277-4598-9455-e6566f6122f5",
+          "name": "Admin Inbox",
+          "description": "6",
+          "content": null
+        }
+      ]
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "06e7a2cd-1277-4598-9455-e6566f6122f5",
+      "id": "06e7a2cd-1277-4598-9455-e6566f6122f5",
+      "name": "Admin Inbox",
+      "description": "6",
+      "content": null,
+      "artefacts": [
+        {
+          "uuid": "152fd189-665f-44b9-b86e-e43f20b3ba6a",
+          "id": "152fd189-665f-44b9-b86e-e43f20b3ba6a",
+          "name": "stackoverflow.com/questions/35296463/semantic-ui-onsuccess-onfailure-callbacks-not-being-fired-upon-form-validation",
+          "description": "[Source](http://stackoverflow.com/questions/35296463/semantic-ui-onsuccess-onfail",
+          "content": "[Source](http://stackoverflow.com/questions/35296463/semantic-ui-onsuccess-onfailure-callbacks-not-being-fired-upon-form-validation \"Permalink to  Semantic UI onSuccess, onFailure callbacks not being fired upon form validation \")\n\n#  Semantic UI onSuccess, onFailure callbacks not being fired upon form validation \n\nIn the following code which validates that username has a value and that the passwords match, neither the onSuccess nor the onFailure callback is ever fired even though the validation rules are being executed/enforced. I've tested every other part of this independently and this layout follows the documentation exactly, so I've ruled out syntax errors. In addition to the syntax used below, I also tried the format of $().form().onSuccess().onFailure() but got an \"Uncaught TypeError: onSuccess is not a function\". Fiddle here: [Semantic UI onSuccess, onFailure callback example][1].\n    \n    \n    $(function(){\n        $('#main')\n            .form({\n                on: 'blur',\n                fields: {\n                    username: {\n                        identifier : 'username',\n                        rules: [\n                            {\n                                type : 'empty'\n                            }\n                        ]\n                    },\n                    password1: {\n                        identifier  : 'password1',\n                        rules: [\n                            {\n                                type   : 'match[password2]',\n                                prompt : 'Please enter the same value in both fields'\n                            }\n                        ]\n                    },\n                    password2: {\n                        identifier  : 'password2',\n                        rules: [\n                            {\n                                type   : 'match[password1]',\n                                prompt : 'Please enter the same value in both fields'\n                            }\n                        ]\n                    }\n                },\n                onSuccess: function() {\n                    $(\".ui.button[name='account']\").removeClass('disabled');\n                    console.log('Success');\n                },\n                onFailure: function() {\n                    $(\".ui.button[name='account']\").addClass('disabled');\n                    console.log('Failure');\n                }\n            }\n        );\n    });\n    \n\nAsked by [Dan Swain][2]\n\n* * *\n\n**Accepted answer:**\n\nThe key is to call it this way. `$('#main').form(fieldRules, settings);` `onFailure` and `onSuccess` are registered in settings.\n\nHave a look of revised code:\n    \n    \n        $(function(){\n            $('#main')\n                .form({\n                        username: {\n                            identifier : 'username',\n                            rules: [\n                                {\n                                    type : 'empty'\n                                }\n                            ]\n                        },\n                        password1: {\n                            identifier  : 'password1',\n                            rules: [\n                                    {\n                                        type: 'empty',\n                                  prompt: 'Please enter the password'\n                                    },\n                                {\n                                    type   : 'match[password2]',\n                                    prompt : 'Please enter the same value in both fields'\n                                }\n                            ]\n                        },\n                        password2: {\n                            identifier  : 'password2',\n                            rules: [\n                                {\n                                    type   : 'match[password1]',\n                                    prompt : 'Please enter the same value in both fields'\n                                }\n                            ]\n                        }\n                    }, {\n                        on: 'blur',\n                      inline: true,\n                      onSuccess: function() {\n                        alert('Success');\n                        return false; // false is required if you do don't want to let it submit\n    \n                        },\n                        onFailure: function() {\n                        alert('Failure');\n                        return false; // false is required if you do don't want to let it submit                                            \n                        }\n                      });\n        });\n    \n\nAnswer by [Shuaib Nawaz][3]\n\n[1]: https://jsfiddle.net/dhswain/6y7w57xv/1/\n[2]: http://stackoverflow.com/users/5548239/dan-swain\n[3]: http://stackoverflow.com/users/366962/shuaib-nawaz\n\n"
+        },
+        {
+          "uuid": "f4fe94c6-f89a-42b0-959d-68120eac6ab7",
+          "id": "f4fe94c6-f89a-42b0-959d-68120eac6ab7",
+          "name": "From Postmaaaaaaan",
+          "description": "Thanks for all the fish",
+          "content": null
+        },
+        {
+          "uuid": "e0637e3c-188d-4468-b6f7-f80e2a200b64",
+          "id": "e0637e3c-188d-4468-b6f7-f80e2a200b64",
+          "name": "CIMS test account",
+          "description": "902-444-1234",
+          "content": null
+        },
+        {
+          "uuid": "8f466172-3c6e-431f-b430-05a5e849ac5f",
+          "id": "8f466172-3c6e-431f-b430-05a5e849ac5f",
+          "name": "2 connections",
+          "description": null,
+          "content": null
+        }
+      ]
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "f4fe94c6-f89a-42b0-959d-68120eac6ab7",
+      "id": "f4fe94c6-f89a-42b0-959d-68120eac6ab7",
+      "name": "From Postmaaaaaaan",
+      "description": "Thanks for all the fish",
+      "content": null,
+      "artefacts": [
+        {
+          "uuid": "06e7a2cd-1277-4598-9455-e6566f6122f5",
+          "id": "06e7a2cd-1277-4598-9455-e6566f6122f5",
+          "name": "Admin Inbox",
+          "description": "6",
+          "content": null
+        }
+      ]
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "f322b2ec-89a9-4502-a243-879ffa53b157",
+      "id": "f322b2ec-89a9-4502-a243-879ffa53b157",
+      "name": "Artefact 6",
+      "description": "Description 6",
+      "content": null,
+      "artefacts": []
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "e0637e3c-188d-4468-b6f7-f80e2a200b64",
+      "id": "e0637e3c-188d-4468-b6f7-f80e2a200b64",
+      "name": "CIMS test account",
+      "description": "902-444-1234",
+      "content": null,
+      "artefacts": [
+        {
+          "uuid": "06e7a2cd-1277-4598-9455-e6566f6122f5",
+          "id": "06e7a2cd-1277-4598-9455-e6566f6122f5",
+          "name": "Admin Inbox",
+          "description": "6",
+          "content": null
+        }
+      ]
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "bfe18c38-14d4-4a6f-97a1-e62b4021ad2a",
+      "id": "bfe18c38-14d4-4a6f-97a1-e62b4021ad2a",
+      "name": "Artefact 3",
+      "description": "Description 3",
+      "content": null,
+      "artefacts": []
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "afac671b-4a9d-4245-869c-74f085f13e57",
+      "id": "afac671b-4a9d-4245-869c-74f085f13e57",
+      "name": "Artefact 1",
+      "description": "Description 1",
+      "content": null,
+      "artefacts": []
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "8f466172-3c6e-431f-b430-05a5e849ac5f",
+      "id": "8f466172-3c6e-431f-b430-05a5e849ac5f",
+      "name": "2 connections",
+      "description": null,
+      "content": null,
+      "artefacts": [
+        {
+          "uuid": "06e7a2cd-1277-4598-9455-e6566f6122f5",
+          "id": "06e7a2cd-1277-4598-9455-e6566f6122f5",
+          "name": "Admin Inbox",
+          "description": "6",
+          "content": null
+        },
+        {
+          "uuid": "ef201b56-de02-42f3-accb-7e54ee2d97c9",
+          "id": "ef201b56-de02-42f3-accb-7e54ee2d97c9",
+          "name": "Inbox",
+          "description": null,
+          "content": null
+        },
+        {
+          "uuid": "1b63fd75-6665-47f7-8f13-59310d010db6",
+          "id": "1b63fd75-6665-47f7-8f13-59310d010db6",
+          "name": "FAKENAME",
+          "description": "Fake description",
+          "content": null
+        },
+        {
+          "uuid": "8e74c8ab-7057-4632-8e34-f5fc09b47142",
+          "id": "8e74c8ab-7057-4632-8e34-f5fc09b47142",
+          "name": "Artefact 7",
+          "description": "Description 7",
+          "content": null
+        }
+      ]
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "8e74c8ab-7057-4632-8e34-f5fc09b47142",
+      "id": "8e74c8ab-7057-4632-8e34-f5fc09b47142",
+      "name": "Artefact 7",
+      "description": "Description 7",
+      "content": null,
+      "artefacts": [
+        {
+          "uuid": "8f466172-3c6e-431f-b430-05a5e849ac5f",
+          "id": "8f466172-3c6e-431f-b430-05a5e849ac5f",
+          "name": "2 connections",
+          "description": null,
+          "content": null
+        },
+        {
+          "uuid": "43c73548-d2f8-4e32-b201-a4c94cc9bd88",
+          "id": "43c73548-d2f8-4e32-b201-a4c94cc9bd88",
+          "name": "Artefact 4",
+          "description": "Description 4 😂",
+          "content": null
+        }
+      ]
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "8e672768-1dbd-4481-a52e-f12c0adeb266",
+      "id": "8e672768-1dbd-4481-a52e-f12c0adeb266",
+      "name": "Artefact With JSON",
+      "description": "Artemis",
+      "content": null,
+      "artefacts": []
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "7aa29546-d73a-4d93-9ff4-e4c8f5864f90",
+      "id": "7aa29546-d73a-4d93-9ff4-e4c8f5864f90",
+      "name": "Sinatra Test",
+      "description": "Sinatra Desc",
+      "content": null,
+      "artefacts": [
+        {
+          "uuid": "ef201b56-de02-42f3-accb-7e54ee2d97c9",
+          "id": "ef201b56-de02-42f3-accb-7e54ee2d97c9",
+          "name": "Inbox",
+          "description": null,
+          "content": null
+        }
+      ]
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "78a8df58-c667-4e2c-a238-0e8b0823ed1b",
+      "id": "78a8df58-c667-4e2c-a238-0e8b0823ed1b",
+      "name": "Artefact 5",
+      "description": "Description 5",
+      "content": null,
+      "artefacts": []
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "43c73548-d2f8-4e32-b201-a4c94cc9bd88",
+      "id": "43c73548-d2f8-4e32-b201-a4c94cc9bd88",
+      "name": "Artefact 4",
+      "description": "Description 4 😂",
+      "content": null,
+      "artefacts": [
+        {
+          "uuid": "8e74c8ab-7057-4632-8e34-f5fc09b47142",
+          "id": "8e74c8ab-7057-4632-8e34-f5fc09b47142",
+          "name": "Artefact 7",
+          "description": "Description 7",
+          "content": null
+        }
+      ]
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "1d0a2d1d-53cc-481c-b794-afcc6d9c7323",
+      "id": "1d0a2d1d-53cc-481c-b794-afcc6d9c7323",
+      "name": "Artefact 2",
+      "description": "Description 2",
+      "content": null,
+      "artefacts": []
+    }
+  },
+  {
+    "artefact": {
+      "uuid": "1b63fd75-6665-47f7-8f13-59310d010db6",
+      "id": "1b63fd75-6665-47f7-8f13-59310d010db6",
+      "name": "FAKENAME",
+      "description": "Fake description",
+      "content": null,
+      "artefacts": [
+        {
+          "uuid": "8f466172-3c6e-431f-b430-05a5e849ac5f",
+          "id": "8f466172-3c6e-431f-b430-05a5e849ac5f",
+          "name": "2 connections",
+          "description": null,
+          "content": null
+        }
+      ]
+    }
+  }
+]
