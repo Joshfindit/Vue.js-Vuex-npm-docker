@@ -34,7 +34,11 @@ const config = {
     plugins: ['transform-runtime']
   },
   plugins: [
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin(
+      {
+        template: 'index.html'
+      }
+    )
   ],
   resolve: {
     alias: {
