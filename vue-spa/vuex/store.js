@@ -102,6 +102,7 @@ const mutations = {
         // this.response = request.data;
         // console.log(returnedJSON);
         thisNote.uuid = returnedJSON.id;
+        thisNote.favorite = true;
         thisNote.name = returnedJSON.name;
         thisNote.text = returnedJSON.content;
         thisNote.description = returnedJSON.description;
