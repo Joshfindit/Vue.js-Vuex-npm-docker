@@ -35,7 +35,14 @@ const mutations = {
 
         for (var propertyIndex in parsedJSON) {
           if (parsedJSON[propertyIndex].artefact) {
-            simpleArray.push({ favorite: false, name: parsedJSON[propertyIndex].artefact.name, text: parsedJSON[propertyIndex].artefact.content, uuid: parsedJSON[propertyIndex].artefact.id});
+            var setText
+            if ( !parsedJSON[propertyIndex].artefact.content ) {
+              setText = parsedJSON[propertyIndex].artefact.description
+            } else {
+              setText = parsedJSON[propertyIndex].artefact.content
+            }
+
+            simpleArray.push({ favorite: false, name: parsedJSON[propertyIndex].artefact.name, text: setText, uuid: parsedJSON[propertyIndex].artefact.id});
           }
         }
 
