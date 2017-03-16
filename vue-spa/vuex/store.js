@@ -8,7 +8,8 @@ Vue.use(Vuex)
 const state = {
   noteList: [],
   notes: [],
-  activeNote: {}
+  activeNote: {},
+  websession: '6fe5bd9c-d355-42a1-b9a6-b1be20568e64'
 }
 
 const mutations = {
@@ -26,7 +27,7 @@ const mutations = {
     //     console.log(error);
     //   });
 
-    axios.get(url, {headers: {"Authorization": "Token token=" + "this.websession"}}).then(
+    axios.get(url, {headers: {"Authorization": "Token token=" + state.websession}}).then(
       function (request) {
         var simpleArray = [];
         // success callback
@@ -94,7 +95,7 @@ const mutations = {
     var uuid = "8f466172-3c6e-431f-b430-05a5e849ac5f"
     var url = encodeURI("/static/artefacts/" + uuid + ".json");
 
-    axios.get(url, {headers: {"Authorization": "Token token=" + "this.websession"}}).then(
+    axios.get(url, {headers: {"Authorization": "Token token=" + state.websession}}).then(
       function (request) {
         // success callback
         var returnedJSON = request.data.artefact;
