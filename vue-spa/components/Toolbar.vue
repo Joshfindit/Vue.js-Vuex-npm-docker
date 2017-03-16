@@ -1,7 +1,8 @@
 <template>
   <div id="toolbar">
     <i @click="addNote" class="glyphicon glyphicon-plus"></i>
-    <i @click="getNoteList" class="glyphicon glyphicon-plus"></i>
+    <i @click="getNoteList" class="glyphicon glyphicon-list"></i>
+    <i @click="getSingleNote" class="glyphicon glyphicon-plus"></i>
     <i @click="toggleFavorite"
       class="glyphicon glyphicon-star"
       :class="{starred: activeNote.favorite}"></i>
@@ -20,6 +21,9 @@ export default {
   methods: {
     getNoteList () {
       this.$store.dispatch('getNoteList')
+    },
+    getSingleNote () {
+      this.$store.dispatch('getSingleNote')
     },
     addNote () {
       this.$store.dispatch('addNote')

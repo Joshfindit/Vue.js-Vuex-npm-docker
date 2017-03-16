@@ -35,7 +35,7 @@ const mutations = {
 
         for (var propertyIndex in parsedJSON) {
           if (parsedJSON[propertyIndex].artefact) {
-            simpleArray.push({ favorite: false, text: parsedJSON[propertyIndex].artefact.name, uuid: parsedJSON[propertyIndex].artefact.id});
+            simpleArray.push({ favorite: false, name: parsedJSON[propertyIndex].artefact.name, content: parsedJSON[propertyIndex].artefact.content, uuid: parsedJSON[propertyIndex].artefact.id});
           }
         }
 
@@ -79,6 +79,56 @@ const mutations = {
     // $.getJSON(url, function (parsedJSON) {
     //   v.jsonIndex = parsedJSON;
     // })
+  },
+
+  GET_SINGLE_NOTE (state) {
+    // this.loading = true;
+    // this.artefact = getBlankArtefactData();
+    var uuid = "8f466172-3c6e-431f-b430-05a5e849ac5f"
+    var url = encodeURI("/static/artefacts/" + uuid + ".json");
+
+    axios.get(url, {headers: {"Authorization": "Token token=" + "this.websession"}}).then(
+      function (request) {
+        // success callback
+        var returnedJSON = request.data.artefact;
+        var thisNote = {}
+        // this.response = request.data;
+        // console.log(returnedJSON);
+        thisNote.uuid = returnedJSON.id;
+        thisNote.name = returnedJSON.name;
+        thisNote.content = returnedJSON.content;
+        thisNote.description = returnedJSON.description;
+        thisNote.artefacts = [];
+        for (var thisArtefact in returnedJSON.artefacts){
+          //console.log(returnedJSON.artefacts[thisArtefact]);
+          thisNote.artefacts.push(returnedJSON.artefacts[thisArtefact].id);
+        };
+        // this.artefact.identities_with_permission_display = [];
+        // for (thisIdentity in returnedJSON.identities_with_permission){
+        //   //console.log(returnedJSON.identities_with_permission[thisIdentity]);
+        //   this.artefact.identities_with_permission_display.push(returnedJSON.identities_with_permission[thisIdentity].username);
+        // };
+        // this.artefact.connectedArtefacts = returnedJSON.artefacts;
+        // // console.log(returnedJSON.artefacts);
+        // // console.log(this.artefact.connectedArtefacts);
+        // //this.thumbnail = parsedJSON.thumbnailUrl;
+        // returnedJSONMinusRaw = returnedJSON;
+        // this.deleteFromObjectByKeyPart ("Raw", returnedJSONMinusRaw);
+        // // delete parsedJSONMinusRaw["originalMetaDataDumpRaw"];
+        // // v.json = parsedJSON;
+        // // this.json = parsedJSONMinusRaw;
+        // this.json = returnedJSONMinusRaw.artefact;
+        // this.loading = false;
+
+        state.notes.push(thisNote)
+
+      }.bind(this),
+      function (response) {
+        // error callback
+        // this.json = {error: "Error"};
+        // this.loading = false;
+      }
+    )
   },
 
   ADD_NOTE (state) {
