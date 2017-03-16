@@ -35,7 +35,7 @@ const mutations = {
 
         for (var propertyIndex in parsedJSON) {
           if (parsedJSON[propertyIndex].artefact) {
-            simpleArray.push({ favorite: false, name: parsedJSON[propertyIndex].artefact.name, content: parsedJSON[propertyIndex].artefact.content, uuid: parsedJSON[propertyIndex].artefact.id});
+            simpleArray.push({ favorite: false, name: parsedJSON[propertyIndex].artefact.name, text: parsedJSON[propertyIndex].artefact.content, uuid: parsedJSON[propertyIndex].artefact.id});
           }
         }
 
@@ -96,7 +96,7 @@ const mutations = {
         // console.log(returnedJSON);
         thisNote.uuid = returnedJSON.id;
         thisNote.name = returnedJSON.name;
-        thisNote.content = returnedJSON.content;
+        thisNote.text = returnedJSON.content;
         thisNote.description = returnedJSON.description;
         thisNote.artefacts = [];
         for (var thisArtefact in returnedJSON.artefacts){
@@ -133,6 +133,7 @@ const mutations = {
 
   ADD_NOTE (state) {
     const newNote = {
+      name: 'New Note Name',
       text: 'New note',
       favorite: false,
       uuid: null
